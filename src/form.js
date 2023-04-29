@@ -54,26 +54,46 @@ const getErrorFields = (form) =>
 const Form = (props) => {
   
   const [form, setForm] = useState(INITIAL_STATE)
-  
+  const resultMessage = document.getElementById("message")
   const errorFields = getErrorFields(form);
-  console.log(errorFields);
   
   const handleChange = (e) => {
     const updatedForm = {...form, [e.target.id]: e.target.value}
     setForm(updatedForm)
   }
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
     
+    try {
+      let res = await fetch("https://my-json-server.typicode.com/tundeojediran/contacts-api-server/inquiries", {
+        method: "POST",
+        body: JSON.stringify({
+          form
+        }),
+      });
+      if (res.status === 200 || res.status === 201) {
+        resultMessage.innerHTML = "Submission was successful"
+        setInterval(() => resultMessage.innerHTML = "", 1000)
+      } else {
+        resultMessage.innerHTML = "Submission failed"
+        setInterval(() => resultMessage.innerHTML = "", 1000)
+      }
+    } catch (err) {
+      alert(err);
+    }
     const hasErrors = Object.values(errorFields).flat().length > 0;
     if (hasErrors) return;
 
     props.submitForm(form)
     setForm(INITIAL_STATE)
-  }
+  
+  };
+    
+    
   return(
     <form onSubmit={handleSubmit}>
+      <h4 id="message"> </h4>
       <h1>Contact-Us</h1>
       <div className="item">
         <label htmlFor="name">Name</label>
