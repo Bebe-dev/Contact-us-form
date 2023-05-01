@@ -1,0 +1,57 @@
+
+body{
+  
+  padding: 1rem;
+  background-image: linear-gradient(45deg, #95D8EB, #48BF91);
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+form{
+  margin: 2rem auto;
+  background-color: #ffffff;
+  width: 40%;
+  padding: 2rem;
+  display: grid;
+  place-items: center;
+}
+h1{
+  background-image: linear-gradient(45deg, #48BF91, #95D8EB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: auto;
+}
+div{
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+label{
+  font-size: 1.3rem;
+}
+input, textarea{
+  padding: 0.4rem;
+  border-radius: 0.5rem;
+  outline: none;
+}
+button{
+  background-color: #48BF91;
+  padding: 0.6rem;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  width: 50%;
+  margin: auto;
+  color: #ffffff;
+}
+button:hover{
+  font-size: 1rem;
+}
+
+
+@media screen and (max-width: 600px){
+  form{
+    width: 70%;
+  }
+}
